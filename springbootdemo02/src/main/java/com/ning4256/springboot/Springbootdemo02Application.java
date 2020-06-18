@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @SpringBootApplication
 //扫描@WebServlet端口
 @ServletComponentScan
+
 public class Springbootdemo02Application {
 
     public static void main(String[] args) {

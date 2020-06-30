@@ -10,4 +10,6 @@ public interface UsersDao {
     void insertUsers(Users users);
 
     List<Users> findUsersAll();
+
+    Users selectUserById(Integer id);
 }

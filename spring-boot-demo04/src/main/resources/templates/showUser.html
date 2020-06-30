@@ -1,29 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.thymeleaf.org ">
+<link rel="shortcuticon"href="../resources/favicon.ico"th:href="@{/static/favicon.ico}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <table border="1" align="center">
-        <tr>
-            <th>用户id</th>
-            <th>用户姓名</th>
-            <th>用户性别</th>
-            <th>操作</th>
-        </tr>
-        <tr th:each="u : ${users}">
-            <td th:text="${u.userid}"></td>
-            <td th:text="${u.username}"></td>
-            <td th:text="${u.usersex}"></td>
-            <td>
-                <a th:href="@{/user/updateUser(id=${u.userid})}">修改</a>
-                <a th:href="@{/user/deleteUser(id=${u.userid})}">删除</a>
+    <form th:action="@{user/updateUser}" method="post">
+        用户id：<input type="text" name="username" th:value="${user.userid}"><br>
+        用户名：<input type="text" name="username" th:value="${user.username}"><br><br>
+        用户性别<input type="text" name="usersex" th:value="${user.usersex}"><br>
+        <input type="submit" value="OK">
 
-            </td>
-        </tr>
-
-    </table>
+    </form>
 </body>
 </html>

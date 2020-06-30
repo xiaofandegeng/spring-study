@@ -27,4 +27,10 @@ public class UsersServiceImpl implements UsersService {
         List<Users> findUsersAll = usersDao.findUsersAll();
         return findUsersAll;
     }
+
+    @Override
+    public Users selectUserById(Integer id) {
+        Users user = usersDao.selectUserById(id);
+        return user;
+    }
 }

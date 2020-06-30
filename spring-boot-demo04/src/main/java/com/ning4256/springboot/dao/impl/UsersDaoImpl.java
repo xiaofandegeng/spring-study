@@ -4,6 +4,7 @@ import com.ning4256.springboot.dao.UsersDao;
 import com.ning4256.springboot.pojo.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -42,5 +43,21 @@ public class UsersDaoImpl implements UsersDao {
             }
         });
         return list;
+    }
+
+    @Override
+    public Users selectUserById(Integer id) {
+        Users user = new Users();
+        String sql = "select * from users where userid = ?";
+        Object[] arr = new Object[]{id};
+        jdbcTemplate.query(sql, arr, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet resultSet) throws SQLException {
+                user.setUserid(resultSet.getInt("userid"));
+                user.setUsername(resultSet.getString("username"));
+                user.setUsersex(resultSet.getString("usersex"));
+            }
+        });
+        return user;
     }
 }

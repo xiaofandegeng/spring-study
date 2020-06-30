@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.thymeleaf.org ">
+<link rel="shortcuticon"href="../resources/favicon.ico"th:href="@{/static/favicon.ico}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <form th:action="@{user/addUser}" method="post">
-        <input type="text" name="username"><br>
-        <input type="text" name="usersex"><br>
+        用户名：<input type="text" name="username"><br><br>
+        用户性别<input type="text" name="usersex"><br>
         <input type="submit" value="OK">
 
     </form>

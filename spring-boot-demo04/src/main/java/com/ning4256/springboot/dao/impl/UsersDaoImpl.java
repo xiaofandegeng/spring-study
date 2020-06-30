@@ -4,7 +4,12 @@ import com.ning4256.springboot.dao.UsersDao;
 import com.ning4256.springboot.pojo.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 //持久层
 @Repository
@@ -19,5 +24,23 @@ public class UsersDaoImpl implements UsersDao {
         int update = this.jdbcTemplate.update(sql, users.getUsername(), users.getUsersex());
         System.out.println(update);
 
+    }
+
+    //查询全部用户
+    @Override
+    public List<Users> findUsersAll() {
+        String sql = "select * from users";
+        List<Users> list = jdbcTemplate.query(sql, new RowMapper<Users>() {
+
+            @Override
+            public Users mapRow(ResultSet resultSet, int i) throws SQLException {
+                Users users = new Users();
+                users.setUserid(resultSet.getInt("userid"));
+                users.setUsername(resultSet.getString("username"));
+                users.setUsersex(resultSet.getString("usersex"));
+                return users;
+            }
+        });
+        return list;
     }
 }
